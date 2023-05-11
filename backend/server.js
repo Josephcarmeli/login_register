@@ -2,7 +2,7 @@ import express from 'express';
 import pg from 'pg';
 import router from './routes.js';
 import cors from 'cors';
-import middleware from './middleware.js';
+import { app as middleware } from './middleware.js';
 
 const server = express();
 server.use(cors());
