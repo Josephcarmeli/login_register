@@ -8,6 +8,7 @@ server.use(cors());
 server.use(express.json());
 server.use('/api', router);
 
+
 const port = 3001;
 export const pool = new pg.Pool({
   user: 'joseph',
