@@ -6,7 +6,7 @@ export const registerUser = async (req, res) => {
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        //insert new user into database
+
         const newUser = await pool.query(
             `INSERT INTO users (fullname, email, password, create_datetime)
             VALUES ($1, $2, $3, NOW()) RETURNING *`,
@@ -36,7 +36,7 @@ export const loginUser = async (req, res) => {
             return res.status(401).json({error: 'Invalid Credentials'});
         }
 
-        // Return success message
+
         res.json({message: 'Login successful', user: user.rows[0]});
     } catch (err) {
         console.error(err.message);

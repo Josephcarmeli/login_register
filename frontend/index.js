@@ -29,7 +29,7 @@ submitBtn.onclick = function(e) {
     let password = passwordInput.value;
 
     if (title.innerHTML === "Register") {
-        fetch('http://localhost:3001/api/register', { // Replace localhost with your actual domain when deployed
+        fetch('http://localhost:3001/api/register', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,15 +42,15 @@ submitBtn.onclick = function(e) {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.fullname) { // If registration successful, you might want to redirect user or show success message
-                window.location.href = './home.html';  // Redirect to home.html
+            if (data.fullname) { 
+                window.location.href = './home.html'; 
             } else {
                 console.error('Registration failed:', data.error);
             }
         })
         .catch((error) => console.error('Error:', error));
     } else if (title.innerHTML === "Sign In") {
-        fetch('http://localhost:3001/api/login', {  // Replace localhost with your actual domain when deployed
+        fetch('http://localhost:3001/api/login', {  
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ submitBtn.onclick = function(e) {
         .then(response => response.json())
         .then(data => {
             if (data.message === 'Login successful') {
-                window.location.href = './home.html';  // Redirect to home.html
+                window.location.href = './home.html';  
             } else {
                 console.error('Login failed:', data.error);
             }
