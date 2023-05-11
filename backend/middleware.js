@@ -2,6 +2,8 @@ import express from 'express';
 
 const app = express();
 app.use(express.json());
-app.use(express.static("frontend"));
+app.use(express.static(path.resolve('frontend')));
 
-app.use("/resgister", )
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve('frontend', 'index.html'));
+  });
