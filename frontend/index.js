@@ -1,3 +1,4 @@
+// index.js
 let signupBtn = document.getElementById("signupBtn");
 let signinBtn = document.getElementById("signinBtn");
 let nameField = document.getElementById("nameField");
@@ -28,9 +29,28 @@ submitBtn.onclick = function(e) {
     let password = passwordInput.value;
 
     if (title.innerHTML === "Register") {
-        // Registration code...
+        fetch('http://localhost:3001/api/register', { // Replace localhost with your actual domain when deployed
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                fullname: fullname,
+                email: email,
+                password: password,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.fullname) { // If registration successful, you might want to redirect user or show success message
+                window.location.href = './home.html';  // Redirect to home.html
+            } else {
+                console.error('Registration failed:', data.error);
+            }
+        })
+        .catch((error) => console.error('Error:', error));
     } else if (title.innerHTML === "Sign In") {
-        fetch('http://localhost:3001/api/login', {  // Make sure this is your login API endpoint
+        fetch('http://localhost:3001/api/login', {  // Replace localhost with your actual domain when deployed
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
